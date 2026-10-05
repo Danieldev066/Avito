@@ -8,7 +8,7 @@
         bash -c "python manage.py collectstatic --noinput && python manage.py makemigrations && python manage.py migrate && gunicorn -b 0.0.0.0:8000 my_site.wsgi:application"
       volumes:
         - .:/app
-        - /home/ubuntu/Avito/mysite/staticfiles:/app/static
+        - /home/ubuntu/Avito/my_site/staticfiles:/app/static
         - media_volume:/app/media
       ports:
         - "8000:8000"
@@ -30,7 +30,7 @@
       ports:
         - "80:80"
       volumes:
-        - /home/ubuntu/Avito/mysite/staticfiles:/app/static
+        - /home/ubuntu/Avito/my_site/staticfiles:/app/static
         - media_volume:/app/media
       depends_on:
         - web

@@ -19,14 +19,14 @@ class UserProfile(AbstractUser):
     avatar = models.ImageField(upload_to='profile_image/')
     status = models.CharField(choices=STATUS_CHOICES,default='simple',max_length=50)
 
-    def str(self):
+    def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
 class Category(models.Model):
      category_name = models.CharField(max_length=50)
      category_image = models.ImageField(upload_to='categories/')
 
-     def str(self) -> str:
+     def __str__(self) -> str:
          return self.category_name
 
 class SubCategory(models.Model):
@@ -34,7 +34,7 @@ class SubCategory(models.Model):
     subcategory_name = models.CharField(max_length=50)
     subcategory_image = models.ImageField(upload_to='subcategories/')
 
-    def str(self) -> str:
+    def __str__(self) -> str:
         return f'{self.category.category_name} - {self.subcategory_name}'
 
 class Product(models.Model):
@@ -48,6 +48,9 @@ class Product(models.Model):
     video = models.FileField(upload_to='products_videos/', null=True, blank=True)
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.product_name
 
 
     def get_avg_rating(self):
